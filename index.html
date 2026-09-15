@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="春日花藝選單，提供花束、花籃、盆栽與捧花選購服務。">
+    <title>Spring Bloom｜春日花藝選單</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-orb background-orb--pink" aria-hidden="true"></div>
+    <div class="background-orb background-orb--blue" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="brand">
+                <div class="brand-mark" aria-hidden="true">✿</div>
+                <div class="brand-text">
+                    <strong>SPRING BLOOM</strong>
+                    <span>ANTIGRAVITY FLOWER MENU</span>
+                </div>
+            </div>
+            <button class="admin-toggle" type="button" id="adminToggle">⚙ 切換為管理員模式</button>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="eyebrow">SPRING FLOWER COLLECTION</div>
+                <h1>春日花藝 <span>選單</span> 精選</h1>
+                <p class="hero-description">
+                    從浪漫花束、清新花籃到輕盈盆栽與精緻捧花，我們為每一個重要時刻挑選最合適的花藝組合。
+                </p>
+            </div>
+
+            <div class="hero-art">
+                <div class="flower-orbit" aria-hidden="true">
+                    <div class="flower">❀</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="admin-panel" id="adminPanel">
+            <div class="admin-panel-inner">
+                <div class="section-heading">
+                    <div>
+                        <h2>新增花藝商品</h2>
+                        <p>請填寫商品資訊，資料會同步到 Google Apps Script 後端。</p>
+                    </div>
+                </div>
+
+                <form class="admin-form" id="productForm">
+                    <div class="form-field">
+                        <label for="productName">商品名稱</label>
+                        <input id="productName" name="productName" type="text" placeholder="例如：春日浪漫花束" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="productCategory">分類</label>
+                        <select id="productCategory" name="productCategory" required>
+                            <option value="">請選擇分類</option>
+                            <option value="花束">花束</option>
+                            <option value="花籃">花籃</option>
+                            <option value="盆栽">盆栽</option>
+                            <option value="捧花">捧花</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field form-field--full">
+                        <label for="productDescription">商品描述</label>
+                        <textarea id="productDescription" name="productDescription" placeholder="請輸入花藝說明與搭配建議" required></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="productPrice">價格</label>
+                        <input id="productPrice" name="productPrice" type="number" min="0" step="1" placeholder="例如：680" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="productImageUrl">圖片網址</label>
+                        <input id="productImageUrl" name="productImageUrl" type="url" placeholder="https://..." required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="secondary-button" type="reset">重設</button>
+                        <button class="primary-button" type="submit">新增商品</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <div class="shop-layout">
+            <section class="products-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>春日花藝選單</h2>
+                        <p>精選適合春季氛圍的花束與花藝設計，帶來清新、明亮的感受。</p>
+                    </div>
+                </div>
+
+                <div class="products-grid" id="productsGrid">
+                    <div class="empty-products">載入花藝商品中...</div>
+                </div>
+            </section>
+
+            <aside class="cart-panel">
+                <div class="cart-header">
+                    <h2>購物車</h2>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+
+                <div class="cart-items" id="cartItems">
+                    <div class="cart-empty">目前購物車是空的，<br>先挑選一些花吧！</div>
+                </div>
+
+                <div class="cart-divider"></div>
+
+                <div class="customer-field">
+                    <label for="customerName">顧客姓名</label>
+                    <input id="customerName" type="text" placeholder="請輸入姓名">
+                </div>
+
+                <div class="cart-total">
+                    <span>總金額</span>
+                    <strong>NT$ <span id="cartTotal">0</span></strong>
+                </div>
+
+                <button class="checkout-button" id="checkoutButton" type="button" disabled>送出訂單</button>
+            </aside>
+        </div>
+
+        <footer class="site-footer">Spring Bloom by Antigravity Flower Studio</footer>
+    </main>
+
+    <div class="loading-overlay" id="loadingOverlay" aria-live="polite" aria-busy="true">
+        <div class="loading-box">
+            <div class="loading-ring" aria-hidden="true"></div>
+            <div class="loading-text" id="loadingText">處理中...</div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
